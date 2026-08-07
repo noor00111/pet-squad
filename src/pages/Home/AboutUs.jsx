@@ -1,56 +1,62 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { Button } from '@/components/ui/button';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaDog, FaHeart, FaHome, FaPaw, FaStethoscope } from 'react-icons/fa';
-
+import { FaArrowRight, FaHome, FaPaw, FaStethoscope } from 'react-icons/fa';
 
 const AboutUs = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const featVariants = {
+    hidden: { y: 15, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.4 } }
+  };
 
   return (
-    <div className='lg:px-20 px-4'>
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <SectionTitle
-          title={"About Us"}
-          subTitle={"We specialize in our Passion Caring for Pets & Sheltering"}
-        />
-      </motion.h2>
+    <div className='lg:px-20 px-6 py-12 transition-all duration-300'>
+      <SectionTitle
+        title={"About Us"}
+        subTitle={"We specialize in our Passion Caring for Pets & Sheltering"}
+      />
 
-      <div className="grid lg:grid-cols-2 gap-10">
-        <div className="py-20 flex flex-col justify-center">
+      <div className="grid lg:grid-cols-2 gap-12 items-center mt-6">
+        <div className="py-10 flex flex-col justify-center">
 
-        <motion.div 
-            className="flex space-x-4 bg-purple-50 py-4 px-2 mb-6 text-colorPrimary font-medium"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            whileHover={{ scale: 1.1 }} 
+          <motion.div
+            className="mb-8 flex flex-col gap-6 rounded-2xl border border-border bg-secondary p-6 font-medium text-foreground shadow-sm sm:flex-row"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
-            <div className="flex items-center gap-2">
-              <FaPaw className="text-3xl text-colorSecondary" />
-              <span>Helping Homeless Pets</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <FaStethoscope className="text-3xl text-purple-500" />
-              <span>Ensuring Pet Welfare</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <FaHome className="text-3xl text-green-500" />
-              <span>Finding Forever Homes</span>
-            </div>
+            <motion.div variants={featVariants} className="flex items-center gap-2.5">
+              <FaPaw className="shrink-0 text-2xl text-colorSecondary" />
+              <span className="text-sm">Helping Homeless Pets</span>
+            </motion.div>
+            <motion.div variants={featVariants} className="flex items-center gap-2.5">
+              <FaStethoscope className="shrink-0 text-2xl text-colorPrimary" />
+              <span className="text-sm">Ensuring Pet Welfare</span>
+            </motion.div>
+            <motion.div variants={featVariants} className="flex items-center gap-2.5">
+              <FaHome className="shrink-0 text-2xl text-emerald-600" />
+              <span className="text-sm">Finding Forever Homes</span>
+            </motion.div>
           </motion.div>
 
           <motion.p
-            className="text-xl mb-8 leading-relaxed text-gray-500 "
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            whileHover={{ scale: 1.1 }}
+            className="mb-8 text-lg leading-relaxed text-muted-foreground"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             Our mission is to connect loving families with pets in need of a home. This
             website was created to make the adoption process simple, transparent, and
@@ -59,13 +65,14 @@ const AboutUs = () => {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
             <Link
-              href="/about"
-              className=" text-colorPrimary underline font-semibold rounded-full flex items-center space-x-2 transition duration-300"
+              to="/about"
+              className="inline-flex items-center space-x-2 rounded-full font-semibold text-colorPrimary underline transition-all duration-300 hover:text-colorPrimary/80"
             >
               <span>Read More</span>
               <FaArrowRight />
@@ -73,23 +80,21 @@ const AboutUs = () => {
           </motion.div>
         </div>
 
-     
-        <div>
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-muted shadow-xl">
           <motion.img
             src="https://i.ibb.co.com/bMnJ5f3m/2150492139.jpg"
             alt="Happy pets and families"
-            className="w-full mt-10 rounded-2xl shadow-lg"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7}}
-            whileHover={{ scale: 0.8}}
+            className="w-full h-full object-cover aspect-[4/3]"
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.6 }}
           />
         </div>
       </div>
     </div>
-
   );
 };
-
 
 export default AboutUs;

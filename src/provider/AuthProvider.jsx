@@ -4,7 +4,6 @@ import auth from '@/firebase/firebase.config';
 import useAxiosPublic from '@/hooks/useAxiosPublic';
 
 
-
 const googleAuthProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 export const AuthContext = createContext("");
@@ -43,7 +42,8 @@ const AuthProvider = ({ children }) => {
 
    
 
-    //set observer to get the current user
+    //------set observer to get the current user------
+    
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -54,8 +54,13 @@ const AuthProvider = ({ children }) => {
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token);
-                            setLoading(false);
                         }
+                    })
+                    .catch(() => {
+                        localStorage.removeItem('access-token');
+                    })
+                    .finally(() => {
+                        setLoading(false);
                     })
             }
             else {

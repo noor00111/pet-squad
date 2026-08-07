@@ -2,6 +2,7 @@ import useAxiosPublic from '@/hooks/useAxiosPublic';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { AuthContext } from '@/provider/AuthProvider';
 import React, { useContext } from 'react';
+import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useNavigate } from 'react-router-dom';
@@ -39,7 +40,6 @@ const UpdateDonationCampaign = () => {
                 "short description": data.shortDescription,
                 "long description": data.longDescription,
                 campaignOwnerEmail: user.email,
-                donorName: user.name,
             }
 
             const updateDonationRes = await axiosSecure.put(`/donationCampaign/${_id}`, updateDonationData);
@@ -59,7 +59,12 @@ const UpdateDonationCampaign = () => {
         }
     }
     return (
-        <div>
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="max-w-2xl mx-auto p-10 bg-card border border-border shadow-lg shadow-primary/10 rounded-2xl"
+        >
             <Helmet><title>Edit Donation | Pet Squad</title></Helmet>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="w-full my-6">
@@ -68,69 +73,72 @@ const UpdateDonationCampaign = () => {
 
                 <div className="w-full my-6">
                     <label>
-                        <span className="text-sm font-medium text-gray-700">Name*</span>
+                        <span className="text-sm font-medium text-foreground/80">Name*</span>
                     </label>
                     <input
                         defaultValue={petName}
                         type="text"
                         placeholder="Please enter the name of your pet"
                         {...register('name', { required: true })}
-                        className="w-full mt-1 border border-gray-300 p-2 rounded-lg" />
+                        className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow" />
                 </div>
 
                 <div className="w-full my-6">
                     <label>
-                        <span className="text-sm font-medium text-gray-700">Amount*</span>
+                        <span className="text-sm font-medium text-foreground/80">Amount*</span>
                     </label>
                     <input
                         defaultValue={amount}
                         type="text"
                         placeholder="Enter the maximum amount"
                         {...register('amount', { required: true })}
-                        className="w-full mt-1 border border-gray-300 p-2 rounded-lg" />
+                        className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow" />
                 </div>
 
                 <div className="w-full my-6">
                     <label>
-                        <span className="text-sm font-medium text-gray-700">Last Date</span>
+                        <span className="text-sm font-medium text-foreground/80">Last Date</span>
                     </label>
                     <input
                         defaultValue={lastDate}
                         type="date"
                         placeholder="Enter"
                         {...register('lastDate', { required: true })}
-                        className="w-full mt-1 border border-gray-300 p-2 rounded-lg" />
+                        className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow" />
                 </div>
 
                 <div className="w-full my-6">
                     <label>
-                        <span className="text-sm font-medium text-gray-700">Short Description</span>
+                        <span className="text-sm font-medium text-foreground/80">Short Description</span>
                     </label>
                     <input
                         defaultValue={shortDescription}
                         type="text"
                         placeholder="Enter a short description"
                         {...register('shortDescription', { required: true })}
-                        className="w-full mt-1 border border-gray-300 p-2 rounded-lg" />
+                        className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow" />
                 </div>
 
                 <div>
                     <label>
-                        <span className="text-sm font-medium text-gray-700">Long Description</span>
+                        <span className="text-sm font-medium text-foreground/80">Long Description</span>
                     </label>
                     <textarea {...register('longDescription')}
                         defaultValue={longDescription}
-                        className="w-full mt-1 border border-gray-300 p-2 rounded-lg h-28" placeholder="Provide detailed information"></textarea>
+                        className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg h-28 focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow" placeholder="Provide detailed information"></textarea>
                 </div>
 
                 <div className='flex justify-center'>
-                    <button className="border-2 bg-colorPrimary px-6 py-2 rounded-md text-white mt-5 hover:rounded-xl font-headingFont">
-                        Submit</button>
+                    <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="bg-primary px-6 py-2 rounded-md text-primary-foreground mt-5 shadow-md shadow-primary/30 transition-colors hover:bg-primary/90 font-headingFont">
+                        Submit</motion.button>
                 </div>
 
 
             </form>
-        </div>
+        </motion.div>
     );
 };
 

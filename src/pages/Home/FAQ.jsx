@@ -1,8 +1,6 @@
-import { FaPlus, FaMinus } from "react-icons/fa";
 import { motion } from "framer-motion";
-import React, { useState } from 'react';
-import { Accordion, AccordionItem } from "@/components/ui/accordion";
-import { FaArrowTurnUp } from "react-icons/fa6";
+import React from 'react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const FAQ = () => {
   const faqs = [
@@ -28,62 +26,44 @@ const FAQ = () => {
     },
   ];
 
-  const [openIndex, setOpenIndex] = useState(null);
   return (
-<div>
-      <div className="relative bg-cover bg-center py-16 px-6 my-10"
-      style={{ backgroundImage: "url('https://i.ibb.co.com/5xzGm3Tk/2151850076.jpg')" }}>
-      <div className="text-center mb-10">
-        <motion.h2
-          className="text-4xl font-bold text-white"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Your Guide to Pet Adoption
-        </motion.h2>
-      </div>
+    <div className="max-w-7xl mx-auto px-6 py-16 relative">
+      <div
+        className="relative overflow-hidden rounded-3xl bg-cover bg-center px-6 py-20 shadow-xl"
+        style={{ backgroundImage: "url('https://i.ibb.co.com/5xzGm3Tk/2151850076.jpg')" }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(265,35%,9%)]/40 via-[hsl(265,35%,9%)]/70 to-[hsl(265,35%,9%)]/85 backdrop-blur-[1px]"></div>
 
-      <Accordion type="single" collapsible className="max-w-3xl mx-auto bg-slate-300 bg-opacity-30 p-6 rounded-xl shadow-lg">
-        {faqs.map((faq, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <AccordionItem
-              key={index}
-              value={`${index}`}
-              className="border-b border-gray-300 py-4 cursor-pointer"
-              onClick={() => setOpenIndex(isOpen ? null : index)}
-            >
-              <div className="flex justify-between items-center cursor-pointer">
-                <h3 className="text-lg font-semibold text-colorSecondary">{faq.question}</h3>
-                {isOpen ? (
-                  <FaMinus className="text-colorSecondary" />) : (<FaPlus className="text-colorSecondary" />)}
-              </div>
+        <div className="relative z-10 mb-10 text-center">
+          <span className="inline-block font-bodyFont text-sm font-semibold uppercase tracking-[0.18em] text-colorSecondary">
+            Got Questions?
+          </span>
+          <motion.h2
+            className="mt-3 text-balance font-headingFont text-3xl font-semibold tracking-tight text-white md:text-4xl"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}>
+            Your Guide to Pet Adoption
+          </motion.h2>
+        </div>
 
-              {isOpen && (
-                <motion.p
-                  className="text-white mt-2"
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {faq.answer}
-                </motion.p>
-              )}
+        <Accordion
+          type="single"
+          collapsible
+          className="relative z-10 mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-md md:p-8">
+          {faqs.map((faq, index) => (
+            <AccordionItem key={index} value={`${index}`} className="border-white/10 last:border-0">
+              <AccordionTrigger className="py-5 text-left font-bodyFont text-base font-semibold text-white hover:no-underline hover:text-colorSecondary md:text-lg [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-colorSecondary">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="pr-6 text-sm leading-relaxed text-white/80 md:text-base">
+                {faq.answer}
+              </AccordionContent>
             </AccordionItem>
-          );
-        })}
-      </Accordion>
-
-      <motion.button
-        className="fixed bottom-5 right-5 bg-colorSecondary text-colorPrimary p-3 rounded-full shadow-lg hover:bg-colorSecondary transition duration-300"
-        whileHover={{ scale: 1.1 }}
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <FaArrowTurnUp></FaArrowTurnUp>
-      </motion.button>
+          ))}
+        </Accordion>
+      </div>
     </div>
-</div>
   );
 };
 

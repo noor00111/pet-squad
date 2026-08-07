@@ -1,21 +1,56 @@
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
-import useDonation from '@/hooks/useDonation';
+import useAxiosPublic from '@/hooks/useAxiosPublic';
 import { AuthContext } from '@/provider/AuthProvider';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useContext, useState } from 'react';
+import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 
-const CheckoutForm = ({ donation }) => {
+const CheckoutForm = ({ donation, onSuccess, initialAmount }) => {
 
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState('');
     const [transactionId, setTransactionId] = useState('');
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
     const { user } = useContext(AuthContext);
+
+    const showThankYou = async () => {
+        let recommended = [];
+        try {
+            const res = await axiosPublic.get(`/donationCampaign?page=0&limit=4`);
+            recommended = (res.data.campaigns || []).filter((c) => c._id !== donation._id).slice(0, 3);
+        } catch {
+            recommended = [];
+        }
+
+        const recommendedHtml = recommended.length ? `
+                <h3 style="font-weight: bold; margin-top: 12px;">More campaigns that need your help</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px;">
+                    ${recommended.map((c) => `
+                        <a href="/donationDetails/${c._id}" style="
+                            display: block; width: 150px; padding: 12px; border: 1px solid #e5e0d8;
+                            border-radius: 12px; text-decoration: none; color: inherit; text-align: left;">
+                            <img src="${c.image}" alt="${c.petName}" style="width: 100%; height: 80px; object-fit: cover; border-radius: 8px;" />
+                            <p style="margin: 8px 0 2px; font-weight: 600; font-size: 0.9rem;">${c.petName}</p>
+                            <p style="margin: 0; font-size: 0.8rem; color: #8a5a1a;">Goal: ${c.amount} </p>
+                        </a>
+                    `).join('')}
+                </div>
+            `
+            : '';
+
+        Swal.fire({
+            title: 'Thank you for your donation!',
+            html: `<p>Your generosity helps ${donation.petName} get closer to their goal.</p>${recommendedHtml}`,
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: 'Close'
+        });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,11 +75,9 @@ const CheckoutForm = ({ donation }) => {
         })
 
         if (error) {
-            // console.log('payment error', error);
             setError(error.message);
         }
         else {
-            // console.log('payment method', paymentMethod)
             setError('');
         }
 
@@ -58,16 +91,14 @@ const CheckoutForm = ({ donation }) => {
             }
         })
         if (confirmError) {
-            console.log('error')
+            setError(confirmError.message);
         }
         else {
-            // console.log('payment intent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                // console.log('transactionId', paymentIntent.id);
                 setTransactionId(paymentIntent.id)
 
-                // payment save in db
                 const donationData = {
+                    campaignId: donation._id,
                     image: donation.image,
                     name: donation.petName,
                     donatedAmount: amount,
@@ -75,108 +106,10 @@ const CheckoutForm = ({ donation }) => {
                     donorEmail: user.email,
                 }
                 const res = await axiosSecure.post('/myDonation', donationData);
-                // console.log(res.data);
 
                 if (res.data?.donateResult?.insertedId) {
-                    Swal.fire({
-                        title: 'Thank you for your donation!',
-                        html: `
-                           <h3 style=" font-weight: bold;">More Recommended Donation Campaigns!!</h3>
-                           <div style="
-                           display: flex; 
-                           justify-content: center; 
-                           align-items: center; 
-                           flex-direction: column; 
-                           padding: 20px; 
-                           border: 1px solid #ddd; 
-                           border-radius: 10px; 
-                           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-                           background-color: #fff; 
-                           max-width: 400px; 
-                           margin: auto;
-                           margin-bottom: 15px;">
-                           <h1 style="font-size: 1.5rem; color: #333;">Jerry</h1>
-                           <p style="font-size: 1rem; color: #666;">Required Fund: 9000 BDT</p>
-                           <p style="font-size: 1rem; color: #555; text-align: center;">
-                             Help us create a cozy and safe environment for our furry friends by upgrading our shelter facilities.
-                           </p>
-                           <a href="/donationCampaigns" style="
-                             margin-top: 15px; 
-                             padding: 10px 20px; 
-                             background-color: #4CAF50; 
-                             color: white; 
-                             text-decoration: none; 
-                             border-radius: 5px; 
-                             font-size: 1rem;">
-                             Donate
-                           </a>
-                           </div>
-                                       
-                           <div style="
-                           display: flex; 
-                           justify-content: center; 
-                           align-items: center; 
-                           flex-direction: column; 
-                           padding: 20px; 
-                           border: 1px solid #ddd; 
-                           border-radius: 10px; 
-                           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-                           background-color: #fff; 
-                           max-width: 400px; 
-                           margin: auto;
-                           margin-bottom: 15px;">
-                           <h1 style="font-size: 1.5rem; color: #333;">Tom </h1>
-                           <p style="font-size: 1rem; color: #666;">Required Fund: 7000 BDT</p>
-                           <p style="font-size: 1rem; color: #555; text-align: center;">
-                             Support the daily needs of our animals with food, medical care, and essential supplies.
-                           </p>
-                           <a href="/donationCampaigns" style="
-                             margin-top: 15px; 
-                             padding: 10px 20px; 
-                             background-color: #4CAF50; 
-                             color: white; 
-                             text-decoration: none; 
-                             border-radius: 5px; 
-                             font-size: 1rem;">
-                             Donate
-                           </a>
-                           </div>
-                                       
-                           <div style="
-                           display: flex; 
-                           justify-content: center; 
-                           align-items: center; 
-                           flex-direction: column; 
-                           padding: 20px; 
-                           border: 1px solid #ddd; 
-                           border-radius: 10px; 
-                           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-                           background-color: #fff; 
-                           max-width: 400px; 
-                           margin: auto;
-                           margin-bottom: 15px;">
-                           <h1 style="font-size: 1.5rem; color: #333;">Lucky </h1>
-                           <p style="font-size: 1rem; color: #666;">Required Fund: 5000 BDT</p>
-                           <p style="font-size: 1rem; color: #555; text-align: center;">
-                             Help us control the pet population and promote healthier adoptions through spay and neuter programs.
-                           </p>
-                           <a href="/donationCampaigns" style="
-                             margin-top: 15px; 
-                             padding: 10px 20px; 
-                             background-color: #4CAF50; 
-                             color: white; 
-                             text-decoration: none; 
-                             border-radius: 5px; 
-                             font-size: 1rem;">
-                             Donate
-                           </a>
-                           </div>
-                                `,
-                        
-                        showCancelButton: false,
-                        focusConfirm: false,
-                        confirmButtonText: 'Close'
-                    });
+                    onSuccess?.();
+                    await showThankYou();
                 }
             }
         }
@@ -185,43 +118,49 @@ const CheckoutForm = ({ donation }) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <div className="rounded-lg border border-border bg-background p-3">
                 <CardElement
                     options={{
                         style: {
                             base: {
                                 fontSize: '16px',
-                                color: '#424770',
+                                color: '#3f2d5c',
                                 '::placeholder': {
-                                    color: '#aab7c4',
+                                    color: '#a99bc2',
                                 },
                             },
                             invalid: {
-                                color: '#9e2146',
+                                color: '#e0245e',
                             },
                         },
                     }}
                 />
+                </div>
 
-                <Label htmlFor="email" className="text-gray-700 font-bodyFont">
+                <Label htmlFor="email" className="text-foreground/80 font-bodyFont">
                     Donation Amount
                 </Label>
                 <Input
                     name="amount"
                     id="amount"
-                    type="amount"
+                    type="number"
+                    min="1"
+                    defaultValue={initialAmount || ''}
                     placeholder="Enter your amount"
-                    className="mt-1 font-bodyFont"
+                    className="mt-1 font-bodyFont focus-visible:ring-2 focus-visible:ring-colorSecondary transition-shadow"
                     required
                 />
-                <button
-                    className=" font-bodyFont bg-colorPrimary my-4 px-4 py-2 rounded text-colorSecondary"
+                <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="font-bodyFont bg-primary my-4 px-4 py-2 rounded shadow-md shadow-primary/30 text-primary-foreground transition-colors hover:bg-primary/90"
                     type="submit"
-                // disabled={!stripe}
+                    disabled={!stripe}
                 >
                     Donate
-                </button>
-                <p className="text-sm font-bodyFont text-red-600">{error}</p>
-                {transactionId && <p className="text-green-600"> Your transaction id: {transactionId}</p>}
+                </motion.button>
+                <p className="text-sm font-bodyFont text-destructive">{error}</p>
+                {transactionId && <p className="text-emerald-500"> Your transaction id: {transactionId}</p>}
             </form>
         </div>
     );

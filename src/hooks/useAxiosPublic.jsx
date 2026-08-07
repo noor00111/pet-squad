@@ -1,9 +1,9 @@
 import axios from "axios";
+import { API_BASE_URL } from "@/lib/config";
 
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:5000'
-    //https://pet-squad-server.vercel.app
+    baseURL: API_BASE_URL
 })
 
 const useAxiosPublic = () => {

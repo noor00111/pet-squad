@@ -4,10 +4,9 @@ import Login from "@/pages/Auth/Login";
 import Registration from "@/pages/Auth/Registration";
 import Error404 from "@/pages/Error404";
 import Home from "@/pages/Home/Home";
-import {
-  createBrowserRouter,
-} from "react-router-dom";
-// import PrivateRoute from "./PrivateRoute";
+import About from "@/pages/About/About";
+import Contact from "@/pages/Contact/Contact";
+import {createBrowserRouter} from "react-router-dom";
 import AddPets from "@/pages/PrivatePages/Dashboard/AddPets";
 import MyAddedPets from "@/pages/PrivatePages/Dashboard/MyAddedPets";
 import UpdatePet from "@/pages/PrivatePages/Dashboard/UpdatePet";
@@ -27,6 +26,9 @@ import AllPets from "@/pages/PrivatePages/Dashboard/AdminDashboard/AllPets";
 import AllDonations from "@/pages/PrivatePages/Dashboard/AdminDashboard/AllDonations";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import DashboardRedirect from "./DashboardRedirect";
+import { API_BASE_URL } from "@/lib/config";
+import PetCare from "@/pages/PetCare/PetCare";
 
 
 
@@ -40,24 +42,34 @@ export const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
+        path: '/about',
+        element: <About></About>
+      },
+      {
+        path: '/contact',
+        element: <Contact></Contact>
+      },
+      {
+        path: "/petCare",
+        element: <PetCare></PetCare>
+      },
+      {
         path: '/petListing',
         element: <NotAdoptedPetListing></NotAdoptedPetListing>,
-        loader: () => fetch('http://localhost:5000/pets/isNotAdopted')
+        loader: () => fetch(`${API_BASE_URL}/pets/isNotAdopted`)
       },
       {
         path: '/petDetails/:id',
         element: <PetDetails></PetDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
+        loader: ({params}) => fetch(`${API_BASE_URL}/pets/${params.id}`)
       },
       {
         path: '/donationCampaigns',
-        element: <DonationCampaigns></DonationCampaigns>,
-        loader: () => fetch('http://localhost:5000/donationCampaign')
+        element: <DonationCampaigns></DonationCampaigns>
       },
       {
         path: '/donationDetails/:id',
-        element: <DonationDetails></DonationDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/donationCampaign/${params.id}`)
+        element: <DonationDetails></DonationDetails>
       },
       {
         path: '/login',
@@ -71,9 +83,12 @@ export const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    // element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
+      {
+        index: true,
+        element: <DashboardRedirect></DashboardRedirect>
+      },
       {
         path: 'user',
         element:<UserDashboard></UserDashboard>
@@ -89,7 +104,7 @@ export const router = createBrowserRouter([
       {
         path: 'updatePet/:id',
         element: <UpdatePet></UpdatePet>,
-        loader: ({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
+        loader: ({params}) => fetch(`${API_BASE_URL}/pets/${params.id}`)
       },
       {
         path: 'adoptionRequest',
@@ -106,14 +121,14 @@ export const router = createBrowserRouter([
       {
         path: 'updateDonationCampaign/:id',
         element: <UpdateDonationCampaign></UpdateDonationCampaign>,
-        loader: ({params}) => fetch(`http://localhost:5000/donationCampaign/${params.id}`)
+        loader: ({params}) => fetch(`${API_BASE_URL}/donationCampaign/${params.id}`)
       },
       {
         path: 'myDonations',
         element: <MyDonation></MyDonation>
       },
 
-      //admin routes
+      //---------admin routes------------//
       {
         path: 'admin',
         element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>

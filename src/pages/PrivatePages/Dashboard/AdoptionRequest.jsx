@@ -3,6 +3,7 @@ import useAxiosSecure from '@/hooks/useAxiosSecure';
 import usePets from '@/hooks/usePets';
 import { AuthContext } from '@/provider/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 
 const AdoptionRequest = () => {
@@ -15,13 +16,13 @@ const AdoptionRequest = () => {
     // console.log(user.email);
 
     const fetchAdoptionList = async () => {
-        const res = await axiosSecure(`/adoption/request?email=${user.email}`)
+        const res = await axiosSecure.get(`/adoption/request?email=${user.email}`)
         // console.log(res);
         setAdoptionRequest(res.data);
     }
 
     const fetchMyRequest = async () => {
-        const res = await axiosSecure(`/adoption/myRequest?email=${user.email}`)
+        const res = await axiosSecure.get(`/adoption/myRequest?email=${user.email}`)
         // console.log(res);
         setMyRequest(res.data);
     }
@@ -58,19 +59,27 @@ const AdoptionRequest = () => {
 
     return (
 
-        <div className='my-10'>
+        <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className='my-10'
+        >
 
             <div>
-                <button 
-                className='border-2 rounded-lg px-5 py-2 mr-5 mb-7 bg-colorPrimary text-white'
+                <button
+                className={`rounded-lg px-5 py-2 mr-5 mb-7 font-semibold transition-colors ${tab === 0 ? 'bg-primary text-primary-foreground shadow-md shadow-primary/30' : 'bg-secondary text-foreground hover:bg-secondary/70'}`}
                 onClick={() => setTab(0)}>
                 My Request</button>
-                <button onClick={() => setTab(1)}>Adoption Request</button>
+                <button
+                className={`rounded-lg px-5 py-2 font-semibold transition-colors ${tab === 1 ? 'bg-primary text-primary-foreground shadow-md shadow-primary/30' : 'bg-secondary text-foreground hover:bg-secondary/70'}`}
+                onClick={() => setTab(1)}>Adoption Request</button>
             </div>
 
 
             {
                 tab === 0 && (
+                    <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
                     <Table>
                         <TableCaption>A list of Your Requested Pets.</TableCaption>
                         <TableHeader>
@@ -84,7 +93,7 @@ const AdoptionRequest = () => {
                         <TableBody>
 
                             {myRequest.map((petInfo, idx) => (
-                                <TableRow key={petInfo._id}>
+                                <TableRow key={petInfo._id} className="transition-colors hover:bg-secondary/60">
                                     <TableCell className="font-medium">{idx + 1}</TableCell>
                                     <TableCell>{petInfo.petName}</TableCell>
                                     <TableCell>{petInfo.phone}</TableCell>
@@ -93,11 +102,13 @@ const AdoptionRequest = () => {
                             ))}
                         </TableBody>
                     </Table>
+                    </div>
                 )
             }
 
             {
                 tab === 1 && (
+                    <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
                     <Table>
                         <TableCaption>A list of Your Selected Pets.</TableCaption>
                         <TableHeader>
@@ -113,7 +124,7 @@ const AdoptionRequest = () => {
                         <TableBody>
 
                             {adoptionRequest.map((petInfo, idx) => (
-                                <TableRow key={petInfo._id}>
+                                <TableRow key={petInfo._id} className="transition-colors hover:bg-secondary/60">
                                     <TableCell className="font-medium">{idx + 1}</TableCell>
                                     <TableCell>{petInfo.petName}</TableCell>
                                     <TableCell>{petInfo.phone}</TableCell>
@@ -121,17 +132,18 @@ const AdoptionRequest = () => {
                                     <TableCell className="justify-center flex">
                                         <button
                                             onClick={() => handleUpdateAdoption(petInfo._id, 'accept')}
-                                            className='border-2 px-5 py-1 rounded-lg bg-green-500 text-white mr-1'>Accept</button>
+                                            className='px-5 py-1 rounded-lg bg-emerald-500 text-white mr-1 transition-transform hover:scale-105'>Accept</button>
                                         <button
                                             onClick={() => handleUpdateAdoption(petInfo._id, 'reject')}
-                                            className='border-2 px-5 py-1 rounded-lg bg-red-500 text-white mr-1'>Reject</button></TableCell>
+                                            className='px-5 py-1 rounded-lg bg-destructive text-destructive-foreground mr-1 transition-transform hover:scale-105'>Reject</button></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
+                    </div>
                 )
             }
-        </div>
+        </motion.div>
 
     );
 };

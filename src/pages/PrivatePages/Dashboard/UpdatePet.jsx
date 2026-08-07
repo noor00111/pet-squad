@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useLoaderData } from 'react-router-dom';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import useAxiosPublic from '@/hooks/useAxiosPublic';
@@ -31,7 +32,12 @@ const axiosSecure = useAxiosSecure();
             title={"Update a Pet Info"}
             ></SectionTitle>
 
-<div className="max-w-4xl mx-auto p-10 bg-primary-foreground shadow-lg rounded-lg">
+<motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+    className="max-w-4xl mx-auto p-10 bg-card border border-border shadow-lg shadow-primary/10 rounded-2xl"
+>
         <Formik
           initialValues={{
             image: image,
@@ -43,7 +49,8 @@ const axiosSecure = useAxiosSecure();
             longDescription: longDescription,
           }}
 
-          // errors handling
+          // -----errors handling-----
+          
           validate={(values) => {
             const errors = {};
             if (!values.name) {
@@ -116,7 +123,7 @@ const axiosSecure = useAxiosSecure();
             <form onSubmit={handleSubmit} className="space-y-6">
 
               <div>
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-foreground/80">
                   Pet Image
                 </label>
                 <input
@@ -125,17 +132,17 @@ const axiosSecure = useAxiosSecure();
                   accept="image/*"
                   onChange=
                   {(e)=> setFieldValue('image', e.target.files[0])}
-                  className="w-full mt-1 border border-gray-300 p-2 rounded-lg"
+                  className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow"
                 />
                 {values.image && (
-                  <p className="text-sm text-green-600 mt-2">
+                  <p className="text-sm text-emerald-500 mt-2">
                     Image selected: {values.image.name}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground/80">
                   Name
                 </label>
                 <input
@@ -145,15 +152,15 @@ const axiosSecure = useAxiosSecure();
                   onBlur={handleBlur}
                   value={values.name}
                   placeholder="Enter pet name"
-                  className="w-full mt-1 border border-gray-300 p-2 rounded-lg"
+                  className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow"
                 />
                 {errors.name && touched.name && (
-                  <p className="text-sm text-red-600 mt-1">{errors.name}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.name}</p>
                 )}
               </div>
   
               <div>
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-foreground/80">
                   Age
                 </label>
                 <input
@@ -163,31 +170,31 @@ const axiosSecure = useAxiosSecure();
                   onBlur={handleBlur}
                   value={values.age}
                   placeholder="Enter pet age"
-                  className="w-full mt-1 border border-gray-300 p-2 rounded-lg"
+                  className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow"
                 />
                 {errors.age && touched.age && (
-                  <p className="text-sm text-red-600 mt-1">{errors.age}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.age}</p>
                 )}
               </div>
     
               <div>
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-foreground/80">
                 Category
                 </label>
                 <Select
                   options={petCategories}
                   onChange={(selectedOption)=>setFieldValue("category", selectedOption?.value || "")}
                   onBlur={handleBlur}
-                  className="w-full mt-1 border border-gray-300 p-2 rounded-lg"
+                  className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow"
                 >
                 </Select>
                 {errors.category && touched.category && (
-                  <p className="text-sm text-red-600 mt-1">{errors.category}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.category}</p>
                 )}
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-foreground/80">
                 Location
                 </label>
                 <input
@@ -197,15 +204,15 @@ const axiosSecure = useAxiosSecure();
                   onBlur={handleBlur}
                   value={values.location}
                   placeholder="Enter location"
-                  className="w-full mt-1 border border-gray-300 p-2 rounded-lg"
+                  className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow"
                 />
                 {errors.location && touched.location && (
-                  <p className="text-sm text-red-600 mt-1">{errors.location}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.location}</p>
                 )}
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-foreground/80">
                   Short Description
                 </label>
                 <input
@@ -215,15 +222,15 @@ const axiosSecure = useAxiosSecure();
                   onBlur={handleBlur}
                   value={values.shortDescription}
                   placeholder="A short note about the pet"
-                  className="w-full mt-1 border border-gray-300 p-2 rounded-lg"
+                  className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow"
                 />
                 {errors.shortDescription && (
-                  <p className="text-sm text-red-600 mt-1">{errors.shortDescription}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.shortDescription}</p>
                 )}
               </div>
     
               <div>
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-foreground/80">
                   Long Description
                 </label>
                 <textarea
@@ -232,23 +239,25 @@ const axiosSecure = useAxiosSecure();
                   onBlur={handleBlur}
                   value={values.longDescription}
                   placeholder="Detailed information about the pet"
-                  className="w-full mt-1 border border-gray-300 p-2 rounded-lg h-28"
+                  className="w-full mt-1 border border-border bg-background text-foreground p-2 rounded-lg h-28 focus:outline-none focus:ring-2 focus:ring-colorSecondary transition-shadow"
                 ></textarea>
               </div>
     
               <div>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-colorPrimary text-white p-3 rounded-lg"
+                  className="w-full bg-primary text-primary-foreground p-3 rounded-lg shadow-md shadow-primary/30 transition-colors hover:bg-primary/90"
                 >
                   Submit
-                </button>
+                </motion.button>
               </div>
             </form>
           )}
         </Formik>
-      </div>
+      </motion.div>
         </div>
     );
 };
