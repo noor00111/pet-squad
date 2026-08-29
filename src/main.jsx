@@ -7,10 +7,7 @@ import { router } from './routes/router'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { HelmetProvider } from 'react-helmet-async';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import {QueryClient, QueryClientProvider,} from '@tanstack/react-query'
 import AuthProvider from './provider/AuthProvider'
 
 

@@ -11,7 +11,9 @@ import { Helmet } from 'react-helmet-async';
 import SocialLogin from './SocialLogin';
 import { setPersistence, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
 import auth from '@/firebase/firebase.config';
-import { Eye, EyeOff, Heart, Lock, Mail, PawPrint } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
+import loginImg from "@/assets/images/auth.png";
+
 
 const SUPPORT_EMAIL = 'mail@gmail.com';
 
@@ -57,6 +59,7 @@ const Login = () => {
             <Helmet>
                 <title>Login | Pet Squad</title>
             </Helmet>
+
             <div className="relative grid min-h-screen items-center justify-center gap-10 overflow-hidden bg-secondary px-4 py-10 lg:grid-cols-2 lg:px-10">
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
                     <motion.div
@@ -71,12 +74,19 @@ const Login = () => {
                     />
                 </div>
 
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+                    className="relative z-10 flex flex-col items-center gap-2 text-center">
+                   <img src={loginImg} alt="" />
+                </motion.div>
+
                 <motion.div
                     initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="relative z-10 mx-auto w-full max-w-md rounded-[1.75rem] border border-border bg-card/90 p-8 shadow-xl shadow-primary/10 backdrop-blur-sm sm:p-10"
-                >
+                    className="relative z-10 mx-auto w-full max-w-md rounded-[1.75rem] border border-border bg-card/90 p-8 shadow-xl shadow-primary/10 backdrop-blur-sm sm:p-10">
                     <h2 className="flex items-center justify-center gap-2 text-center font-headingFont text-2xl font-bold text-foreground">
                         Welcome Back!
                     </h2>
@@ -120,8 +130,7 @@ const Login = () => {
                                     type="button"
                                     onClick={() => setShowPassword((v) => !v)}
                                     aria-label={showPassword ? 'Hide password' : 'Show password'}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
-                                >
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground">
                                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                                 </button>
                             </div>
@@ -129,18 +138,14 @@ const Login = () => {
 
                         <div className="flex items-center justify-between text-sm">
                             <label className="flex items-center gap-2 text-muted-foreground">
-                                <input
-                                    type="checkbox"
+                                <input type="checkbox"
                                     checked={rememberMe}
                                     onChange={(e) => setRememberMe(e.target.checked)}
-                                    className="h-4 w-4 rounded border-border accent-primary"
-                                />
+                                    className="h-4 w-4 rounded border-border accent-primary"/>
                                 Remember me
                             </label>
-                            <a
-                                href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Password reset request')}`}
-                                className="text-colorPrimary hover:underline"
-                            >
+                            <a href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Password reset request')}`}
+                                className="text-colorPrimary hover:underline">
                                 Forgot Password?
                             </a>
                         </div>
@@ -160,22 +165,12 @@ const Login = () => {
                     <div className="mt-4 text-center text-sm text-muted-foreground">
                         <p>
                             New here? Create an account now!
-                            <Link
-                                to="/register"
-                                className="text-colorPrimary text-lg hover:underline font-medium ml-2"
-                            > Register
+                            <Link to="/register"
+                                className="text-colorPrimary text-lg hover:underline font-medium ml-2">
+                                     Register
                             </Link>
                         </p>
                     </div>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-                    className="relative z-10 flex flex-col items-center gap-2 text-center"
-                >
-                   <img src="https://i.ibb.co.com/xK6tjHgt/login.png" alt="" />
                 </motion.div>
             </div>
         </div>

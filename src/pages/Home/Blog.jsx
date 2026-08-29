@@ -5,13 +5,16 @@ import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import { motion } from "framer-motion";
 import { FaArrowRight } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import blogs1 from "@/assets/images/blogs1.jpg"
+import blogs2 from "@/assets/images/blogs2.jpg"
+
 
 const Blog = () => {
     const blogPosts = [
         {
             title: "Preparing Your Home for a New Pet",
             description: "Learn how to make your home safe and comfortable before bringing in a new furry friend.",
-            image: "https://i.ibb.co.com/Jjb2PcBz/81-6-Q-Ps-SDL-AC-UF1000-1000-QL80.jpg",
+            image: blogs1,
             author: "Admin",
             date: "January 15, 2025",
             comments: 5,
@@ -19,7 +22,7 @@ const Blog = () => {
         {
             title: "Best Foods for Your Adopted Pet",
             description: "A guide to choosing the right diet for your newly adopted cat or dog.",
-            image: "https://i.ibb.co.com/tTGWvMW9/Dog-Food-in-Bowl-and-Dog-Biscuits.jpg",
+            image: blogs2,
             author: "Sarah P.",
             date: "February 5, 2025",
             comments: 2,
@@ -50,16 +53,14 @@ const Blog = () => {
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-            >
+                viewport={{ once: true, margin: "-100px" }}>
                 {blogPosts.map((post, index) => (
                     <motion.div
                         key={index}
                         variants={cardVariants}
                         whileHover={{ y: -6 }}
                         transition={{ duration: 0.3 }}
-                        className="group"
-                    >
+                        className="group">
                         <Card className="flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl hover:shadow-colorSecondary/10">
                             <div className="relative h-52 overflow-hidden bg-muted">
                                 <img
@@ -90,8 +91,7 @@ const Blog = () => {
                                 </div>
                                 <Link
                                     to="/petCare"
-                                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-colorPrimary transition-colors hover:text-colorPrimary/80"
-                                >
+                                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-colorPrimary transition-colors hover:text-colorPrimary/80">
                                     Read More <FaArrowRight className="h-3.5 w-3.5" />
                                 </Link>
                             </CardContent>

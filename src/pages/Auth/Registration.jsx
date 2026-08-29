@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 import SocialLogin from './SocialLogin';
 import useAxiosPublic from '@/hooks/useAxiosPublic';
 import { Camera, CheckCircle2, Circle, Eye, EyeOff, Heart, Lock, Mail, PawPrint, User } from 'lucide-react';
+import regImg from "@/assets/images/auth.png";
 
 const Registration = () => {
     const { registerUser, setUser, userUpdateProfile } = useContext(AuthContext);
@@ -83,19 +84,8 @@ const Registration = () => {
             <Helmet>
                 <title>Register | Pet Squad</title>
             </Helmet>
+
             <div className="relative grid min-h-screen items-center justify-center gap-10 overflow-hidden bg-secondary px-4  lg:grid-cols-2 lg:px-10">
-                <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <motion.div
-                        className="absolute -right-20 top-10 h-80 w-80 rounded-full bg-primary/20 blur-[110px]"
-                        animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
-                        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                    <motion.div
-                        className="absolute -left-20 bottom-10 h-80 w-80 rounded-full bg-colorSecondary/20 blur-[110px]"
-                        animate={{ x: [0, 25, 0], y: [0, -20, 0] }}
-                        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    />
-                </div>
 
                 <motion.div
                     initial={{ opacity: 0, x: -40 }}
@@ -253,11 +243,9 @@ const Registration = () => {
                     </h1>
                    
                     <motion.img
-                        src="https://i.ibb.co.com/s9rmKKJS/reg.png"
+                        src={regImg}
                         alt="A dog, cat, rabbit, and cockatiel together, surrounded by hearts"
                         className=""
-                        animate={{ y: [0, -12, 0] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                     />
                 </motion.div>
             </div>

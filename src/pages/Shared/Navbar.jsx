@@ -2,7 +2,6 @@ import { ModeToggle } from '@/common/ModeToggle';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import useAdmin from '@/hooks/useAdmin';
 import { AuthContext } from '@/provider/AuthProvider';
 import { useTheme } from '@/provider/ThemeProvider';
 import { MenuIcon } from 'lucide-react';
@@ -69,8 +68,7 @@ const Navbar = () => {
                             : '0 10px 30px -18px rgba(91,52,176,0.18)'),
                     transition: 'box-shadow 300ms ease-out',
                 }}
-                className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-card/90 px-3 py-2 text-foreground backdrop-blur-xl before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-r before:from-primary/25 before:via-colorSecondary/20 before:to-primary/25 before:blur-lg before:content-[''] dark:border-white/10 dark:bg-footer/95 dark:text-footer-foreground dark:before:from-primary/40 dark:before:via-colorSecondary/25 dark:before:to-primary/40"
-            >
+                className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-card/90 px-3 py-2 text-foreground backdrop-blur-xl before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-r before:from-primary/25 before:via-colorSecondary/20 before:to-primary/25 before:blur-lg before:content-[''] dark:border-white/10 dark:bg-footer/95 dark:text-footer-foreground dark:before:from-primary/40 dark:before:via-colorSecondary/25 dark:before:to-primary/40">
                 <Link to="/" className="flex shrink-0 items-center gap-2.5 py-1 pl-1">
                     <div className="relative">
                         <motion.img
@@ -140,8 +138,7 @@ const Navbar = () => {
                                 <motion.span
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.96 }}
-                                    className="inline-block rounded-full bg-colorSecondary px-4 py-1.5 text-sm font-semibold text-violet-950 shadow-md shadow-colorSecondary/30"
-                                >
+                                    className="inline-block rounded-full bg-colorSecondary px-4 py-1.5 text-sm font-semibold text-violet-950 shadow-md shadow-colorSecondary/30">
                                     Login
                                 </motion.span>
                             </Link>

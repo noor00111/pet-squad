@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import { Gift, HandCoins, HeartHandshake, PawPrint, Users } from 'lucide-react';
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import petsIllustration from '@/assets/images/pets.png';
+import petsImg from '@/assets/images/pets.png';
 import sleepingCat from '@/assets/images/sleeping cat.png';
 
 const AdminDashboard = () => {
@@ -68,6 +68,7 @@ const AdminDashboard = () => {
         .slice(0, 5)
         .map(([label, value]) => ({ label, value }));
 
+
     return (
         <div className="space-y-6">
             <motion.div
@@ -85,7 +86,8 @@ const AdminDashboard = () => {
                                 Admin overview
                             </span>
                             <h1 className="mt-2 font-headingFont text-3xl font-bold text-foreground dark:text-white md:text-4xl">
-                                Welcome back, <span className="bg-colorSecondary bg-clip-text text-transparent dark:from-colorSecondary dark:to-amber-200">{user?.displayName || 'Admin'}</span>
+                                Welcome back, <span className="bg-colorSecondary bg-clip-text text-transparent dark:from-colorSecondary dark:to-amber-200">{user?.displayName || 'Admin'}
+                                </span>
                             </h1>
                             <p className="mt-2 max-w-md text-foreground/70 dark:text-white/70">
                                 Here's how Pet Squad is doing today! Keep the shelters, pets, and families connected.
@@ -109,7 +111,7 @@ const AdminDashboard = () => {
                         className="hidden overflow-hidden rounded-2xl shadow-xl lg:block"
                     >
                         <motion.img
-                            src={petsIllustration}
+                            src={petsImg}
                             alt="Cat, dog and rabbit watching the rain together"
                             animate={{ scale: [1, 1.04, 1] }}
                             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}

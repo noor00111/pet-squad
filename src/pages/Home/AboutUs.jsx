@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaHome, FaPaw, FaStethoscope } from 'react-icons/fa';
+import aboutUS from "@/assets/images/aboutUS.jpg"
 
 const AboutUs = () => {
   const containerVariants = {
@@ -35,8 +36,7 @@ const AboutUs = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <motion.div variants={featVariants} className="flex items-center gap-2.5">
               <FaPaw className="shrink-0 text-2xl text-colorSecondary" />
               <span className="text-sm">Helping Homeless Pets</span>
@@ -56,8 +56,7 @@ const AboutUs = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+            transition={{ duration: 0.6 }}>
             Our mission is to connect loving families with pets in need of a home. This
             website was created to make the adoption process simple, transparent, and
             accessible for everyone. We believe every pet deserves a chance at a better
@@ -68,12 +67,10 @@ const AboutUs = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+            transition={{ duration: 0.5 }}>
             <Link
               to="/about"
-              className="inline-flex items-center space-x-2 rounded-full font-semibold text-colorPrimary underline transition-all duration-300 hover:text-colorPrimary/80"
-            >
+              className="inline-flex items-center space-x-2 rounded-full font-semibold text-colorPrimary underline transition-all duration-300 hover:text-colorPrimary/80">
               <span>Read More</span>
               <FaArrowRight />
             </Link>
@@ -82,7 +79,7 @@ const AboutUs = () => {
 
         <div className="relative overflow-hidden rounded-3xl border border-border bg-muted shadow-xl">
           <motion.img
-            src="https://i.ibb.co.com/bMnJ5f3m/2150492139.jpg"
+            src={aboutUS}
             alt="Happy pets and families"
             className="w-full h-full object-cover aspect-[4/3]"
             initial={{ opacity: 0, scale: 0.96 }}

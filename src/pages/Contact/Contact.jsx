@@ -5,7 +5,9 @@ import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import {AtSign, Check, Clock, Mail, MapPin, MessageSquare, PawPrint, Phone, Send, User} from 'lucide-react';
 import { fadeUp, staggerContainer } from '@/lib/motion';
-import { DoodleHeart, DoodleRing, DoodleSpark, DoodleSquiggle } from '@/components/Doodle/Doodles';
+import {DoodleRing, DoodleSpark, DoodleSquiggle } from '@/components/Doodle/Doodles';
+import contact from "@/assets/images/contact.png";
+
 
 const CONTACT_EMAIL = 'petsquad@gmail.com';
 
@@ -138,7 +140,7 @@ const Contact = () => {
                         >
                             <div className="relative overflow-hidden rounded-[2rem] border-4 border-white shadow-2xl shadow-[#8FB08F]/20 dark:border-white/10">
                                 <motion.img
-                                    src="https://i.ibb.co.com/BR6Y7nH/contact.png"
+                                    src={contact}
                                     alt="A tabby cat in a cozy bed beside an 'Adopt, Love, Repeat' sign"
                                     className="h-[280px] w-full object-cover sm:h-[340px]"
                                     animate={{ scale: [1, 1.03, 1] }}
@@ -146,7 +148,6 @@ const Contact = () => {
                                 />
                             </div>
                             <DoodleRing className="pointer-events-none absolute -left-6 -top-6 h-16 w-16 text-colorSecondary/60 sm:h-20 sm:w-20" />
-                            <DoodleHeart className="pointer-events-none absolute -bottom-4 -right-4 h-12 w-12 text-rose-400" delay={0.4} />
                         </motion.div>
                     </div>
                 </div>

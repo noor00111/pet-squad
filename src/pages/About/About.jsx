@@ -6,7 +6,10 @@ import { useQuery } from '@tanstack/react-query';
 import {ArrowRight, Compass, DoorOpen, HandCoins, Heart, PawPrint, Send, ShieldCheck, Sparkles, Users} from 'lucide-react';
 import useAxiosPublic from '@/hooks/useAxiosPublic';
 import { fadeUp, staggerContainer } from '@/lib/motion';
-import { DoodleHeart, DoodleRing, DoodleSpark, DoodleSquiggle } from '@/components/Doodle/Doodles';
+import { DoodleSpark, DoodleRing, DoodleSquiggle } from '@/components/Doodle/Doodles';
+import about1 from "@/assets/images/about1.png";
+import about2 from "@/assets/images/about2.png";
+import about3 from "@/assets/images/about3.png";
 
 const STEPS = [
     {
@@ -144,11 +147,10 @@ const About = () => {
                             initial={{ opacity: 0, scale: 0.94 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
-                            className="relative mx-auto max-w-md lg:max-w-none"
-                        >
+                            className="relative mx-auto max-w-md lg:max-w-none">
                             <div className="relative overflow-hidden rounded-[2rem] border-4 border-white shadow-2xl shadow-[#8FB08F]/20 dark:border-white/10">
                                 <motion.img
-                                    src="https://i.ibb.co.com/SX1TqS0v/about-1.png"
+                                    src={about1}
                                     alt="A kitten, puppy, rabbit, and budgie sitting together in the grass"
                                     className="h-[280px] w-full object-cover sm:h-[340px]"
                                     animate={{ scale: [1, 1.03, 1] }}
@@ -170,12 +172,10 @@ const About = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.4 }}
-                    className="mx-auto grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2"
-                >
+                    className="mx-auto grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
                     <motion.div
                         variants={fadeUp}
-                        className="glow-hover flex items-center gap-4 rounded-2xl border border-border bg-card px-6 py-6 shadow-sm"
-                    >
+                        className="glow-hover flex items-center gap-4 rounded-2xl border border-border bg-card px-6 py-6 shadow-sm">
                         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-colorSecondary">
                             <PawPrint className="h-5 w-5" />
                         </span>
@@ -208,12 +208,11 @@ const About = () => {
                         className="relative order-2 mx-auto max-w-sm lg:order-1">
                         <div className="relative overflow-hidden rounded-[2rem] shadow-xl">
                             <img
-                                src="https://i.ibb.co.com/sJDW9C1N/about-3.png"
+                                src={about3}
                                 alt="A woman gently kissing her cat on the cheek"
                                 className="aspect-[4/5] w-full object-cover"
                             />
                         </div>
-                        <DoodleHeart className="pointer-events-none absolute -right-5 -top-5 h-14 w-14 text-rose-400" delay={0.3} />
                         <DoodleSpark className="pointer-events-none absolute -bottom-4 -left-4 h-10 w-10 text-colorSecondary" delay={0.6} />
                     </motion.div>
 
@@ -300,12 +299,12 @@ const About = () => {
                         >
                             <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#F7EEDC] to-[#F0E6D2] shadow-xl dark:from-[hsl(265,28%,11%)] dark:to-[hsl(265,26%,13%)]">
                                 <img
-                                    src="https://i.ibb.co.com/zhqWG7Lr/about-2.png"
+                                    src={about2}
                                     alt="A dog, cat, rabbit, and parrot together — every kind of pet is welcome"
                                     className="aspect-square w-full object-cover"
                                 />
                             </div>
-                            <DoodleHeart className="pointer-events-none absolute -bottom-5 -right-5 h-12 w-12 text-primary" delay={0.4} />
+                            <DoodleSpark className="pointer-events-none absolute -bottom-5 -right-5 h-12 w-12 text-primary" delay={0.4} />
                         </motion.div>
                     </div>
                 </div>

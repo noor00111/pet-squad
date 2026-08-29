@@ -5,10 +5,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Button } from "@/components/ui/button";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
-import { Link } from "react-router-dom";
 import { PawPrint, Quote, Star } from "lucide-react";
+import adopter1 from "@/assets/images/adopter1.jpg";
+import adopter2 from "@/assets/images/adopter2.jpg";
+import adopter3 from "@/assets/images/adopter3.jpg";
+
+
 
 const testimonials = [
     {
@@ -17,7 +20,7 @@ const testimonials = [
         petName: "Max",
         petType: "Golden Retriever",
         quote: "Adopting Max was the best decision we ever made! He has brought so much warmth and energy into our home.",
-        image: "https://i.ibb.co.com/MxMFfwQP/dog.jpg",
+        image: adopter1,
     },
     {
         id: 2,
@@ -25,7 +28,7 @@ const testimonials = [
         petName: "Luna",
         petType: "Tabby Cat",
         quote: "Luna has brought so much joy to our family! She fits right in and has become our daily source of happiness.",
-        image: "https://i.ibb.co.com/KjVwfkRX/cat.jpg",
+        image: adopter2,
     },
     {
         id: 3,
@@ -33,14 +36,14 @@ const testimonials = [
         petName: "Charlie",
         petType: "Puppy",
         quote: "Charlie is the perfect addition to our lives! The adoption process was smooth, and we couldn't be happier.",
-        image: "https://i.ibb.co.com/KjHGfwGZ/puppy.jpg",
+        image: adopter3,
     },
     {
     id: 4,
     adopterName: "Daniel Wilson",
-    petName: "Luna",
+    petName: "Mittens",
     petType: "Kitten",
-    quote: "Luna has brought so much joy to our family! She's playful, affectionate, and quickly became everyone's favorite companion.",
+    quote: "Mittens is really so sweet! She's playful, affectionate, and quickly became everyone's favorite companion.",
     image: "https://i.ibb.co.com/Hf6BxBN6/kitten.png",
 },
 {

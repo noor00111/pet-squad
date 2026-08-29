@@ -8,6 +8,11 @@ import { Link } from 'react-router-dom';
 import { useInfiniteQuery, useQueries } from '@tanstack/react-query';
 import { fadeUp, staggerContainer } from '@/lib/motion';
 import {ArrowUpDown, Gift, HeartHandshake, LayoutGrid, List, Loader2, PawPrint, Search, ShieldCheck, Wallet} from 'lucide-react';
+import donation from "@/assets/images/pets-donation.png";
+import cat from "@/assets/images/cat-donation.png";
+
+
+
 
 const PAGE_SIZE = 9;
 
@@ -116,8 +121,7 @@ const DonationCampaigns = () => {
                                 initial={{ opacity: 0, y: 24 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.7, ease: "easeOut" }}
-                                className="text-center lg:max-w-md lg:text-left"
-                            >
+                                className="text-center lg:max-w-md lg:text-left">
 
                                 <h1 className="mt-4 text-balance font-headingFont text-4xl font-bold leading-[1.15] text-foreground dark:text-white lg:text-5xl">
                                     Every Donation Creates a Better Tomorrow!{' '}
@@ -171,7 +175,7 @@ const DonationCampaigns = () => {
                                 transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
                                 className="relative overflow-hidden rounded-[2rem] shadow-2xl shadow-primary/20">
                                 <motion.img
-                                    src="https://i.ibb.co.com/39MpZMDZ/pets-donation.png"
+                                    src={donation}
                                     alt="A kitten and a budgie — pets waiting for donation support"
                                     animate={{ scale: [1, 1.04, 1] }}
                                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
@@ -345,7 +349,7 @@ const DonationCampaigns = () => {
                             <p className="mt-1 text-sm text-muted-foreground">Check back later for more new campaigns.</p>
                         </div>
                         <img
-                            src="https://i.ibb.co.com/Lz6VFFvS/cat-donation.png"
+                            src={cat}
                             alt="A cat hugging a heart, saying thank you"
                             className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24"
                         />

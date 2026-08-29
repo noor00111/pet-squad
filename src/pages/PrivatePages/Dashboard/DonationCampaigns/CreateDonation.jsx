@@ -137,18 +137,12 @@ const CreateDonation = () => {
 
                 <div className="relative z-10 flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
                     <div className="flex gap-8 items-center sm:items-start">
-                        <motion.span
-                            animate={{ y: [0, -4, 0] }}
-                            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-                            className="mt-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/40 text-primary shadow-sm dark:bg-primary/20 dark:text-colorSecondary">
-                            <Gift className="h-5 w-5" />
-                        </motion.span>
                        <div>
                          <h1 className="mt-3 font-headingFont text-3xl font-bold text-foreground">
                             Create Donation Campaign
                         </h1>
                         <p className="mt-1 text-sm text-muted-foreground">
-                            Help more pets get the care and love they deserve 💜
+                            Help more pets get the care and love they deserve!
                         </p>
                        </div>
                     </div>
@@ -323,7 +317,7 @@ const CreateDonation = () => {
                             <Loader2 className="h-4 w-4 animate-spin" />
                         ) : (
                             <>
-                                <Gift className="h-4 w-4" /> Create Campaign <Sparkles className="h-4 w-4" />
+                                 Create Campaign 
                             </>
                         )}
                     </motion.button>

@@ -4,6 +4,10 @@ import { MdPets } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import { Search, PawPrint, Users, ShieldCheck } from 'lucide-react';
 import { fadeUp, staggerContainer } from '@/lib/motion';
+import banner1 from "@/assets/images/banner1.png";
+import banner2 from "@/assets/images/banner2.jpg";
+import banner3 from "@/assets/images/banner3.jpg";
+
 
 const STATS = [
     { icon: PawPrint, value: '2,400+', label: 'Pets rehomed', tone: 'primary' },
@@ -67,7 +71,7 @@ const Banner = () => {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="order-2 overflow-hidden rounded-[2rem] shadow-2xl shadow-primary/20 lg:order-1">
                             <motion.img
-                                src="https://i.ibb.co.com/md55Qwr/pets.png"
+                                src={banner1}
                                 alt="cute pets"
                                 animate={{ scale: [1, 1.04, 1] }}
                                 transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
@@ -126,8 +130,7 @@ const Banner = () => {
                                         key={label}
                                         variants={fadeUp}
                                         whileHover={{ y: -3 }}
-                                        className="flex items-center gap-2.5 rounded-2xl border border-border bg-white px-3.5 py-2.5 shadow-sm dark:border-white/10 dark:bg-white/5"
-                                    >
+                                        className="flex items-center gap-2.5 rounded-2xl border border-border bg-white px-3.5 py-2.5 shadow-sm dark:border-white/10 dark:bg-white/5">
                                         <span
                                             className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
                                                 tone === 'accent'
@@ -154,7 +157,7 @@ const Banner = () => {
                             whileHover={{ scale: 1.08 }}
                             className="pointer-events-auto absolute right-0 top-0 h-20 w-20 rounded-full bg-gradient-to-br from-primary to-colorSecondary p-[3px] shadow-xl xl:h-40 xl:w-40">
                             <div className="h-full w-full overflow-hidden rounded-full border-[3px] border-background">
-                                <img src="https://i.ibb.co.com/9GynvHj/banner3.jpg" alt="A child bonding with her adopted rabbit" className="h-full w-full object-cover" />
+                                <img src={banner3} alt="A child bonding with her adopted rabbit" className="h-full w-full object-cover" />
                             </div>
                         </motion.div>
 
@@ -165,9 +168,8 @@ const Banner = () => {
                             whileHover={{ scale: 1.08 }}
                             className="pointer-events-auto absolute top-52 right-10 h-20 w-20 rounded-full bg-gradient-to-br from-colorSecondary to-primary p-[3px] shadow-xl xl:h-40 xl:w-40">
                             <div className="h-full w-full overflow-hidden rounded-full border-[3px] border-background">
-                                <img src="https://i.ibb.co.com/zH1fmj0/banner2.jpg" alt="A woman feeding treats to her adopted cat" className="h-full w-full object-cover" />
+                                <img src={banner2} alt="A woman feeding treats to her adopted cat" className="h-full w-full object-cover" />
                             </div>
-                            <span className="absolute -top-1 -right-1 flex h-10 w-10 items-center justify-center rounded-full border-2 border-background bg-rose-200 text-[20px] shadow-md">❤️</span>
                         </motion.div>
                     </div>
                 </div>

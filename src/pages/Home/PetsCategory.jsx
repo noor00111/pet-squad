@@ -66,8 +66,8 @@ const PetsCategory = () => {
             768: { slidesPerView: 3 },
             1024: { slidesPerView: 4 },
           }}
-          className="pb-10"
-        >
+          className="pb-10">
+            
           {categories.map((cat) => (
             <SwiperSlide key={cat.category}>
               <Link to={`/petListing?category=${cat.category}`} className="block group">

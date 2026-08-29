@@ -65,7 +65,7 @@ const SidebarContent = ({ user, admin, onLogout, onLinkClick }) => (
             />
             <div className="min-w-0">
                 <p className="truncate font-headingFont text-sm font-bold text-foreground">
-                    {user?.displayName || 'Welcome'}
+                    {user?.displayName || 'Welcome'} Admin
                 </p>
                 <span className="inline-block rounded-full border border-colorSecondary/40 bg-colorSecondary/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-colorSecondary">
                     {admin ? 'Admin' : 'Member'}
@@ -101,8 +101,7 @@ const SidebarContent = ({ user, admin, onLogout, onLinkClick }) => (
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative mx-4 mt-4 overflow-hidden rounded-2xl shadow-lg"
-        >
+            className="relative mx-4 mt-4 overflow-hidden rounded-2xl shadow-lg">
             <motion.img
                 src={sleepingPuppy}
                 alt="Puppy napping peacefully"

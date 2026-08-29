@@ -84,13 +84,7 @@ const AddPets = () => {
 
                 <div className="relative z-10 flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
                     <div className="flex flex-1 flex-col items-center sm:items-start">
-                        <motion.span
-                            animate={{ y: [0, -4, 0] }}
-                            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-                            className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm dark:bg-primary/20 dark:text-colorSecondary"
-                        >
-                            <PawPrint className="h-5 w-5" />
-                        </motion.span>
+                       
                         <h1 className="mt-3 font-headingFont text-3xl font-bold text-foreground">
                             Add Your Pet
                         </h1>
@@ -376,7 +370,7 @@ const AddPets = () => {
                                     <Loader2 className="h-4 w-4 animate-spin" />
                                 ) : (
                                     <>
-                                        <PawPrint className="h-4 w-4" /> Submit Pet <Sparkles className="h-4 w-4" />
+                                        Submit Pet
                                     </>
                                 )}
                             </motion.button>

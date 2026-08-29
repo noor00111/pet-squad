@@ -11,7 +11,7 @@ import { ClipboardList, Dog, Gift, HandCoins, PlusCircle } from 'lucide-react';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import useDonation from '@/hooks/useDonation';
 import { fadeUp, staggerContainer } from '@/lib/motion';
-import petsIllustration from '@/assets/images/pets.png';
+import petsImg from '@/assets/images/pets.png';
 import sleepingCat from '@/assets/images/sleeping cat.png';
 
 const UserDashboard = () => {
@@ -95,7 +95,7 @@ const UserDashboard = () => {
                         className="hidden overflow-hidden rounded-2xl shadow-xl lg:block"
                     >
                         <motion.img
-                            src={petsIllustration}
+                            src={petsImg}
                             alt="Cat, dog and rabbit watching the rain together"
                             animate={{ scale: [1, 1.04, 1] }}
                             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}

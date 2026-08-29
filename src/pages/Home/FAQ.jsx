@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import faq from "@/assets/images/faq.jpg"
+
 
 const FAQ = () => {
   const faqs = [
@@ -30,7 +32,7 @@ const FAQ = () => {
     <div className="max-w-7xl mx-auto px-6 py-16 relative">
       <div
         className="relative overflow-hidden rounded-3xl bg-cover bg-center px-6 py-20 shadow-xl"
-        style={{ backgroundImage: "url('https://i.ibb.co.com/5xzGm3Tk/2151850076.jpg')" }}>
+        style={{ backgroundImage: `url(${faq})`}}>
         <div className="absolute inset-0 bg-gradient-to-b from-[hsl(265,35%,9%)]/40 via-[hsl(265,35%,9%)]/70 to-[hsl(265,35%,9%)]/85 backdrop-blur-[1px]"></div>
 
         <div className="relative z-10 mb-10 text-center">
@@ -38,7 +40,7 @@ const FAQ = () => {
             Got Questions?
           </span>
           <motion.h2
-            className="mt-3 text-balance font-headingFont text-3xl font-semibold tracking-tight text-white md:text-4xl"
+            className="mt-3 text-balance font-headingFont text-3Fxl font-semibold tracking-tight text-white md:text-4xl"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

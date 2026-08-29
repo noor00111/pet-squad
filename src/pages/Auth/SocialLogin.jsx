@@ -2,11 +2,9 @@ import {AuthContext} from '@/provider/AuthProvider';
 import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { PawPrint } from 'lucide-react';
 import useAxiosPublic from '@/hooks/useAxiosPublic';
-import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
     const { loginWithGoogle, setUser,loginWithGithub } = useContext(AuthContext);
