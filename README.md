@@ -147,3 +147,6 @@ config/db.js   → MongoDB connection and shared helpers
 </tr>
 </table>
 
+## Test Account
+**Email**: admin12345@gmail.com
+**Pass**: Aa123456

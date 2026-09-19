@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import {Calendar, CheckCircle2, FileText, Gift, Heart, Loader2, PawPrint, ShieldCheck, Sparkles, Star, UploadCloud, User} from 'lucide-react';
+import {Calendar, CheckCircle2, FileText, Gift, Heart, Loader2, PawPrint, ShieldCheck, Star, UploadCloud, User} from 'lucide-react';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_API = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -120,8 +120,7 @@ const CreateDonation = () => {
                         style={{ top, left }}
                         className={`absolute ${color}`}
                         animate={{ y: [0, -10, 0], rotate: [0, 12, 0], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}
-                    >
+                        transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}>
                         <Icon size={size} fill="currentColor" />
                     </motion.span>
                 ))}

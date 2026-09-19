@@ -67,8 +67,7 @@ const AddPets = () => {
                         style={{ top, left }}
                         className={`absolute ${color}`}
                         animate={{ y: [0, -10, 0], rotate: [0, 12, 0], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}
-                    >
+                        transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}>
                         <Icon size={size} fill="currentColor" />
                     </motion.span>
                 ))}
