@@ -21,21 +21,18 @@ Browse adoptable pets, submit adoption requests, and fund pet-care donation camp
 
 ---
 
-## 📖 Purpose
+## Purpose
 
 Pet Squad connects pet seekers with adoptable animals, making the adoption process smooth and simple to use. Beyond adoption, it also lets the community fund pet-care donation campaigns with secure card payments, so pets in need can get medical care, food, and shelter while they wait for a home.
 
 ---
 
-## 📸 Website Look
+## Website Look
 
 <div align="center">
 
 ### Home Page
 <img src="src/assets/ss/home.png" alt="Home Page" width="90%" />
-
-### Not Yet Adopted Pets
-<img src="src/assets/ss/not-adopted-pets.png" alt="Not Adopted Pets" width="90%" />
 
 ### Admin Dashboard
 <img src="src/assets/ss/admin-dashboard.png" alt="Admin Dashboard" width="90%" />
@@ -44,10 +41,10 @@ Pet Squad connects pet seekers with adoptable animals, making the adoption proce
 
 <table>
 <tr>
-<td align="center"><b> Add a Pet</b><br/><img src="src/assets/ss/add-pet-form.png" alt="Add Pet Form" width="100%" /></td>
+<td align="center"><b> Add Pet Form</b><br/><img src="src/assets/ss/add-pet-form.png" alt="Add Pet Form" width="100%" /></td>
 </tr>
 <tr>
-<td align="center"><b> My Added Pets</b><br/><img src="src/assets/ss/my-added-pets.png" alt="My Added Pets" width="100%" /></td>
+<td align="center"><b> Added Pets</b><br/><img src="src/assets/ss/my-added-pets.png" alt="My Added Pets" width="100%" /></td>
 </tr>
 </table>
 
